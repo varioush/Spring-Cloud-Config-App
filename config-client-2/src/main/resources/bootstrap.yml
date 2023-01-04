@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: config-client-2
+  profiles:
+    active: prod
+  config:
+    import: configserver:http://localhost:8888
+
+
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: "refresh"
+
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  cloud:
+    config:
+      server:
+        git:
+          default-label: master
